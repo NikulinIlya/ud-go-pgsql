@@ -23,6 +23,8 @@ func Connect() {
 
 	log.Printf("Connection to database is successful.\n")
 
+	CreateProductItemsTable(db)
+	
 	closeErr := db.Close()
 	if closeErr != nil {
 		log.Printf("Error while closing the connection, reason: %v\n", closeErr)
