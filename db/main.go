@@ -3,15 +3,17 @@ package db
 import (
 	"log"
 	"os"
+
 	pg "github.com/go-pg/pg"
 )
 
-// Connect make connection to database
-func Connect() {
+// Connect : make connection to database
+func Connect() *pg.DB {
 	options := &pg.Options{
-		User: "user",
+		User:     "user",
 		Password: "password",
-		Addr: "localhost:5432",
+		Addr:     "localhost:5432",
+		Database: "mydb",
 	}
 
 	var db *pg.DB = pg.Connect(options)
@@ -24,13 +26,6 @@ func Connect() {
 	log.Printf("Connection to database is successful.\n")
 
 	CreateProductItemsTable(db)
-	
-	closeErr := db.Close()
-	if closeErr != nil {
-		log.Printf("Error while closing the connection, reason: %v\n", closeErr)
-		os.Exit(100)
-	}
 
-	log.Printf("Connection closed successfully.\n")
-	return
+	return db
 }
