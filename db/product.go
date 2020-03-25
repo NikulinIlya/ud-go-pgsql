@@ -92,3 +92,14 @@ func (pi *ProductItem) DeleteItem(db *pg.DB) error {
 	log.Printf("Delete successful for %s, item\n", pi.Name)
 	return nil
 }
+
+// UpdatePrice : update the price of the product item
+func (pi *ProductItem) UpdatePrice(db *pg.DB) error {
+	_, updateErr := db.Model(pi).Set("price = ?price").Where("id = ?id").Update()
+	if updateErr != nil {
+		log.Printf("Error while updating price, reason: %v\n", updateErr)
+		return updateErr
+	}
+	log.Printf("Price updated successfully for ID $d\n", pi.ID)
+	return nil
+}

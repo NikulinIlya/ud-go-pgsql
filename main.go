@@ -17,6 +17,7 @@ func main() {
 	db.PlaceHolderDemo(pgDb)
 
 	DeleteItem(pgDb)
+	UpdateItemPrice(pgDb)
 }
 
 // SaveProduct : save random product
@@ -98,4 +99,14 @@ func DeleteItem(dbRef *pg.DB) {
 	}
 
 	newPI.DeleteItem(dbRef)
+}
+
+// UpdateItemPrice :
+func UpdateItemPrice(dbRef *pg.DB) {
+	newPI := &db.ProductItem{
+		ID:    1,
+		Price: 5.0,
+	}
+
+	newPI.UpdatePrice(dbRef)
 }
