@@ -13,6 +13,8 @@ func main() {
 	pgDb := db.Connect()
 	SaveProduct(pgDb)
 	SaveTwoProducts(pgDb)
+
+	db.PlaceHolderDemo(pgDb)
 }
 
 func SaveProduct(dbRef *pg.DB) {
