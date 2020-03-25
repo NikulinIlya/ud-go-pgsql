@@ -6,6 +6,7 @@ import (
 	pg "github.com/go-pg/pg"
 )
 
+// Params : special type for demo
 type Params struct {
 	Param1 string
 	Param2 string
