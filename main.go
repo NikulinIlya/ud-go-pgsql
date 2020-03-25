@@ -15,8 +15,11 @@ func main() {
 	SaveTwoProducts(pgDb)
 
 	db.PlaceHolderDemo(pgDb)
+
+	DeleteItem(pgDb)
 }
 
+// SaveProduct : save random product
 func SaveProduct(dbRef *pg.DB) {
 	newPI := &db.ProductItem{
 		Name:  "Product 1",
@@ -40,6 +43,7 @@ func SaveProduct(dbRef *pg.DB) {
 	newPI.SaveAndReturn(dbRef)
 }
 
+// SaveTwoProducts : save two random products
 func SaveTwoProducts(dbRef *pg.DB) {
 	newPIOne := &db.ProductItem{
 		Name:  "Product 2",
@@ -85,4 +89,13 @@ func SaveTwoProducts(dbRef *pg.DB) {
 	}
 
 	newPIOne.SaveTwoItems(dbRef, totalItems)
+}
+
+// DeleteItem : delete the product item by its name
+func DeleteItem(dbRef *pg.DB) {
+	newPI := &db.ProductItem{
+		Name: "Product 5",
+	}
+
+	newPI.DeleteItem(dbRef)
 }
