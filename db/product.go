@@ -82,3 +82,13 @@ func CreateProductItemsTable(db *pg.DB) error {
 
 	return nil
 }
+
+// DeleteItem : delete the product item selected by its name
+func (pi *ProductItem) DeleteItem(db *pg.DB) error {
+	_, deleteErr := db.Model(pi).Where("name = ?name").Delete()
+	if deleteErr != nil {
+		log.Printf("Error while deleting item, reason: $v\n", deleteErr)
+	}
+	log.Printf("Delete successful for %s, item\n", pi.Name)
+	return nil
+}
