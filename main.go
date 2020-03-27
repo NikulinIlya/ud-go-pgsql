@@ -18,6 +18,7 @@ func main() {
 
 	DeleteItem(pgDb)
 	UpdateItemPrice(pgDb)
+	GetByID(pgDb)
 }
 
 // SaveProduct : save random product
@@ -109,4 +110,11 @@ func UpdateItemPrice(dbRef *pg.DB) {
 	}
 
 	newPI.UpdatePrice(dbRef)
+}
+
+func GetByID(dbRef *pg.DB) {
+	newPI := &db.ProductItem{
+		ID: 1,
+	}
+	newPI.GetByID(dbRef)
 }
