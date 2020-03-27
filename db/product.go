@@ -106,7 +106,9 @@ func (pi *ProductItem) UpdatePrice(db *pg.DB) error {
 
 // GetByID : get product item by its ID
 func (pi *ProductItem) GetByID(db *pg.DB) error {
-	getErr := db.Model(pi).Column("name", "desc").Where("id = ?0", pi.ID).Select()
+	getErr := db.Model(pi).Column("name", "desc").
+		Where("id = ?0", pi.ID).
+		Where("name = ?0", pi.Name).Select()
 
 	if getErr != nil {
 		log.Printf("Error while getting value by id, reason: %v\n", getErr)
